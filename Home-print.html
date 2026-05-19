@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>CorClub Assessoria — Planos de saúde para corretores parceiros</title>
+<meta name="description" content="Assessoria de planos de saúde para corretores. Comissões em dia, propostas em poucos cliques e acesso direto às maiores operadoras do mercado." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
+<style>
+  body{background:#fff;color:var(--ink)}
+  img,svg{display:block}
+  .container{max-width:1240px;margin:0 auto;padding:0 32px}
+  @media (max-width:720px){ .container{padding:0 20px} }
+
+  /* ===================== Topband ===================== */
+  .topband{background:#0B1530;color:rgba(255,255,255,.78);font-size:13px;font-weight:500}
+  .topband .container{height:46px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .topband-info{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+  .topband-info span{display:inline-flex;align-items:center;gap:8px}
+  .topband-info b{color:#fff;font-weight:700}
+  .topband-info i{display:inline-flex;color:rgba(255,255,255,.55)}
+  .topband-social{display:flex;align-items:center;gap:6px}
+  .topband-social a{
+    width:30px;height:30px;border-radius:8px;
+    display:inline-flex;align-items:center;justify-content:center;
+    color:rgba(255,255,255,.7);
+    transition:background .15s ease, color .15s ease;
+  }
+  .topband-social a:hover{background:rgba(255,255,255,.08);color:#fff}
+  @media (max-width:780px){ .topband-info span:nth-child(2){display:none} }
+
+  /* ===================== Masthead ===================== */
+  .masthead{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.92);backdrop-filter:saturate(140%) blur(10px);-webkit-backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--line-soft)}
+  .masthead .container{height:88px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .brand{display:inline-flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink)}
+  .brand-mark{width:54px;height:54px;border-radius:14px;background:var(--brand);display:inline-flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 8px 20px -10px color-mix(in oklab, var(--brand) 60%, transparent)}
+  .brand-mark svg{width:34px;height:34px}
+  .brand-name{display:flex;flex-direction:column;line-height:1}
+  .brand-name .n1{font-size:22px;font-weight:700;letter-spacing:-.02em;color:var(--ink)}
+  .brand-name .n1 b{color:var(--brand);font-weight:800}
+  .brand-name .n2{font-size:11.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+
+  .nav{display:flex;align-items:center;gap:4px}
+  .nav a{padding:10px 14px;font-size:14px;font-weight:600;color:var(--ink-2);text-decoration:none;border-radius:8px;transition:background .15s ease, color .15s ease}
+  .nav a:hover{background:var(--bg);color:var(--ink)}
+  .nav a.has-caret::after{content:"";display:inline-block;width:8px;height:8px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:translateY(-2px) rotate(45deg);margin-left:6px;opacity:.55}
+
+  .masthead-cta{display:flex;align-items:center;gap:10px}
+  .btn-pill{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 18px;border-radius:999px;font-size:13.5px;font-weight:700;text-decoration:none;transition:transform .12s ease, background .15s ease, color .15s ease, border-color .15s ease}
+  .btn-pill.outline{background:#fff;border:1.5px solid var(--line);color:var(--ink)}
+  .btn-pill.outline:hover{border-color:var(--brand);color:var(--brand)}
+  .btn-pill.solid{background:var(--brand);color:#fff;border:1.5px solid var(--brand)}
+  .btn-pill.solid:hover{background:var(--brand-deep);border-color:var(--brand-deep)}
+  .btn-pill:active{transform:translateY(1px)}
+
+  .nav-toggle{display:none;width:42px;height:42px;border-radius:10px;background:#fff;border:1px solid var(--line);align-items:center;justify-content:center;color:var(--ink)}
+  @media (max-width:1080px){
+    .nav, .masthead-cta .label-long{display:none}
+    .nav-toggle{display:inline-flex}
+  }
+  @media (max-width:560px){
+    .masthead .container{height:74px}
+    .brand-name .n2{display:none}
+    .brand-mark{width:46px;height:46px}
+    .brand-mark svg{width:28px;height:28px}
+  }
+
+  /* ===================== Hero ===================== */
+  .hero{position:relative;background:linear-gradient(160deg, var(--brand) 0%, var(--brand-deep) 60%, var(--brand-darker) 100%);color:#fff;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background:
+    radial-gradient(900px 600px at 12% 10%, rgba(63,119,255,.35), transparent 60%),
+    radial-gradient(700px 500px at 95% 95%, rgba(10,31,94,.7), transparent 60%);
+    pointer-events:none}
+  .hero-dots{position:absolute;inset:0;opacity:.18;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,.6) 1px, transparent 1px);background-size:24px 24px}
+  .hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr 1fr;gap:60px;align-items:center;padding:96px 0 110px}
+  @media (max-width:980px){ .hero-inner{grid-template-columns:1fr;padding:64px 0 80px;gap:48px} }
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#fff;margin-bottom:24px}
+  .hero-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:#7BE0B5;box-shadow:0 0 0 4px rgba(123,224,181,.15)}
+  .hero h1{font-size:clamp(40px,5.4vw,68px);font-weight:800;letter-spacing:-.03em;line-height:1.02;margin:0;color:#fff;text-wrap:balance}
+  .hero h1 em{font-style:normal;color:#7BE0B5}
+  .hero .lede{margin-top:22px;font-size:18px;line-height:1.55;color:rgba(255,255,255,.78);max-width:560px}
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+  .hero-ctas .btn-light{display:inline-flex;align-items:center;gap:10px;height:54px;padding:0 26px;border-radius:14px;background:#fff;color:var(--brand);font-weight:800;font-size:15px;text-decoration:none;letter-spacing:.01em;box-shadow:0 14px 30px -14px rgba(0,0,0,.45);transition:transform .12s ease}
+  .hero-ctas .btn-light:hover{transform:translateY(-2px)}
+  .hero-ctas .btn-light .arrow{transition:transform .15s ease}
+  .hero-ctas .btn-light:hover .arrow{transform:translateX(4px)}
+  .hero-ctas .btn-ghost-l{display:inline-flex;align-items:center;gap:10px;height:54px;padding:0 22px;border-radius:14px;background:transparent;color:#fff;font-weight:700;font-size:14.5px;text-decoration:none;border:1.5px solid rgba(255,255,255,.25);transition:background .15s ease, border-color .15s ease}
+  .hero-ctas .btn-ghost-l:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.5)}
+  .hero-trust{display:flex;flex-wrap:wrap;gap:28px;margin-top:42px;color:rgba(255,255,255,.65);font-size:13px}
+  .hero-trust b{color:#fff;font-weight:800;font-size:22px;display:block;letter-spacing:-.01em;margin-bottom:2px;font-variant-numeric:tabular-nums}
+
+  /* hero mark / visual */
+  .hero-visual{position:relative;display:flex;align-items:center;justify-content:center}
+  .hero-mark-wrap{position:relative;width:min(460px,100%);aspect-ratio:1;display:flex;align-items:center;justify-content:center}
+  .hero-mark-ring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(255,255,255,.15)}
+  .hero-mark-ring.r2{inset:8%;border:1px dashed rgba(255,255,255,.1);animation:spinSlow 60s linear infinite}
+  .hero-mark-ring.r3{inset:18%;border:1px solid rgba(255,255,255,.08)}
+  @keyframes spinSlow{to{transform:rotate(360deg)}}
+  .hero-mark-cc{position:relative;width:60%;color:#fff;filter:drop-shadow(0 20px 40px rgba(0,0,0,.35))}
+  .hero-mark-cc svg{width:100%;height:auto}
+  .hero-floater{position:absolute;background:#fff;color:var(--ink);border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:12px;box-shadow:0 24px 50px -18px rgba(0,0,0,.45);font-weight:600;font-size:13.5px}
+  .hero-floater .ic{width:34px;height:34px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;background:var(--brand-soft);color:var(--brand);flex:0 0 auto}
+  .hero-floater .lbl{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:2px}
+  .hero-floater.f1{top:8%;left:-4%}
+  .hero-floater.f2{bottom:14%;right:-8%}
+  .hero-floater.f3{bottom:-4%;left:6%}
+  @media (max-width:980px){ .hero-floater.f1{left:0} .hero-floater.f2{right:-2%} .hero-floater.f3{left:0} }
+
+  /* ===================== Section base ===================== */
+  section.page{padding:112px 0;position:relative}
+  @media (max-width:780px){ section.page{padding:80px 0} }
+  .sec-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--brand);margin-bottom:16px}
+  .sec-eyebrow::before{content:"";width:24px;height:2px;background:var(--brand);border-radius:2px}
+  .sec-title{font-size:clamp(32px,3.4vw,46px);font-weight:800;letter-spacing:-.025em;line-height:1.08;margin:0;color:var(--ink);text-wrap:balance}
+  .sec-lede{font-size:17px;line-height:1.6;color:var(--ink-2);margin:18px 0 0;max-width:640px}
+  .sec-head-row{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:56px;flex-wrap:wrap}
+
+  /* ===================== Sobre ===================== */
+  #sobre{background:#fff}
+  .about-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:80px;align-items:center}
+  @media (max-width:980px){ .about-grid{grid-template-columns:1fr;gap:48px} }
+  .about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:42px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .about-stats .s{padding:24px 4px;border-left:1px solid var(--line)}
+  .about-stats .s:first-child{border-left:none;padding-left:0}
+  .about-stats .v{font-size:34px;font-weight:800;letter-spacing:-.02em;color:var(--brand);font-variant-numeric:tabular-nums}
+  .about-stats .l{font-size:13px;color:var(--ink-3);margin-top:4px}
+  .about-pillars{margin-top:32px;display:flex;flex-direction:column;gap:18px}
+  .pillar{display:flex;gap:16px;align-items:flex-start}
+  .pillar .ic{width:42px;height:42px;border-radius:12px;background:var(--brand-soft);color:var(--brand);display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .pillar h4{margin:0 0 4px;font-size:15.5px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
+  .pillar p{margin:0;font-size:14px;color:var(--ink-2);line-height:1.55}
+
+  .about-card{position:relative;background:linear-gradient(160deg, var(--brand) 0%, var(--brand-deep) 100%);border-radius:24px;padding:44px;color:#fff;overflow:hidden;min-height:440px;display:flex;flex-direction:column;justify-content:space-between}
+  .about-card::before{content:"";position:absolute;inset:0;background:radial-gradient(500px 320px at 90% 10%, rgba(255,255,255,.18), transparent 60%);pointer-events:none}
+  .about-card-top{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between}
+  .about-card .badge-w{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+  .about-card .seal{width:80px;height:80px;border-radius:20px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);display:inline-flex;align-items:center;justify-content:center;color:#fff}
+  .about-card .seal svg{width:48px;height:48px}
+  .about-card h3{position:relative;z-index:1;margin:18px 0 0;font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+  .about-card .quote{position:relative;z-index:1;margin-top:24px;font-size:15px;line-height:1.6;color:rgba(255,255,255,.85)}
+  .about-card .signature{position:relative;z-index:1;margin-top:24px;display:flex;align-items:center;gap:12px}
+  .about-card .signature .av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#6FA0FF,#2A52CC);display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:#fff;border:2px solid rgba(255,255,255,.25)}
+  .about-card .signature .n{font-weight:700;font-size:14.5px}
+  .about-card .signature .r{font-size:12.5px;color:rgba(255,255,255,.65)}
+
+  /* ===================== Operadoras ===================== */
+  #operadoras{background:var(--bg)}
+  .op-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media (max-width:980px){ .op-grid{grid-template-columns:repeat(2,1fr)} }
+  .op-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:14px;transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease}
+  .op-card:hover{transform:translateY(-3px);border-color:var(--brand);box-shadow:0 18px 40px -22px rgba(14,47,135,.22)}
+  .op-logo{height:64px;border-radius:12px;background:var(--bg-2);display:flex;align-items:center;justify-content:center;color:var(--ink-2);font-weight:800;font-size:18px;letter-spacing:.02em;border:1px dashed var(--line)}
+  .op-name{font-weight:800;font-size:15px;color:var(--ink);letter-spacing:-.01em}
+  .op-meta{font-size:12.5px;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:6px}
+  .op-meta .t{padding:3px 9px;border-radius:999px;background:var(--brand-soft);color:var(--brand);font-weight:700;font-size:11.5px}
+
+  /* ===================== Vantagens ===================== */
+  #vantagens{background:#fff;position:relative}
+  .vt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media (max-width:980px){ .vt-grid{grid-template-columns:1fr} }
+  .vt-card{position:relative;background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px;overflow:hidden;transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease}
+  .vt-card:hover{transform:translateY(-4px);border-color:var(--brand-soft);box-shadow:0 26px 50px -28px rgba(14,47,135,.22)}
+  .vt-card .ic{width:54px;height:54px;border-radius:14px;background:var(--brand);color:#fff;display:inline-flex;align-items:center;justify-content:center;margin-bottom:18px}
+  .vt-card.alt .ic{background:var(--ink)}
+  .vt-card h3{margin:0;font-size:20px;font-weight:800;letter-spacing:-.015em;color:var(--ink)}
+  .vt-card p{margin:10px 0 0;font-size:14.5px;line-height:1.6;color:var(--ink-2)}
+  .vt-card .num{position:absolute;top:18px;right:22px;font-size:13px;font-weight:800;letter-spacing:.18em;color:var(--muted)}
+  .vt-card ul{margin:18px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+  .vt-card ul li{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:var(--ink-2);line-height:1.5}
+  .vt-card ul li svg{flex:0 0 auto;margin-top:2px;color:var(--brand)}
+
+  /* CTA inline banner */
+  .cta-banner{margin-top:80px;background:var(--ink);border-radius:24px;padding:48px;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;position:relative;overflow:hidden}
+  .cta-banner::before{content:"";position:absolute;right:-80px;top:-80px;width:340px;height:340px;border-radius:50%;background:radial-gradient(closest-side, color-mix(in oklab, var(--brand) 80%, transparent), transparent)}
+  .cta-banner h3{position:relative;margin:0;font-size:28px;font-weight:800;letter-spacing:-.02em;max-width:540px;line-height:1.15;text-wrap:balance}
+  .cta-banner p{position:relative;margin:8px 0 0;color:rgba(255,255,255,.7);font-size:14.5px;max-width:540px;line-height:1.55}
+  .cta-banner .actions{position:relative;display:flex;gap:10px;flex-wrap:wrap}
+  .cta-banner .btn-w{display:inline-flex;align-items:center;gap:8px;height:50px;padding:0 22px;border-radius:12px;background:#fff;color:var(--ink);font-weight:800;font-size:14px;text-decoration:none;transition:transform .12s ease}
+  .cta-banner .btn-w:hover{transform:translateY(-2px)}
+  .cta-banner .btn-o{display:inline-flex;align-items:center;gap:8px;height:50px;padding:0 22px;border-radius:12px;background:transparent;color:#fff;font-weight:700;font-size:14px;text-decoration:none;border:1.5px solid rgba(255,255,255,.3)}
+  .cta-banner .btn-o:hover{background:rgba(255,255,255,.06)}
+
+  /* ===================== Contato ===================== */
+  #contato{background:var(--bg)}
+  .ct-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:start}
+  @media (max-width:980px){ .ct-grid{grid-template-columns:1fr;gap:40px} }
+  .ct-info-list{margin-top:34px;display:flex;flex-direction:column;gap:18px}
+  .ct-row{display:flex;gap:16px;align-items:flex-start;padding:18px;border-radius:16px;background:#fff;border:1px solid var(--line)}
+  .ct-row .ic{width:44px;height:44px;border-radius:12px;background:var(--brand-soft);color:var(--brand);display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .ct-row .lbl{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  .ct-row .val{margin-top:3px;font-size:15px;font-weight:700;color:var(--ink)}
+  .ct-row .sub{font-size:13px;color:var(--ink-3);margin-top:2px}
+
+  .ct-form{background:#fff;border:1px solid var(--line);border-radius:20px;padding:36px;box-shadow:var(--shadow-sm)}
+  .ct-form h3{margin:0 0 6px;font-size:22px;font-weight:800;letter-spacing:-.015em;color:var(--ink)}
+  .ct-form .ct-sub{margin:0 0 26px;font-size:14px;color:var(--ink-3)}
+  .ct-form .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:560px){ .ct-form .row2{grid-template-columns:1fr} }
+  .ct-form .field{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+  .ct-form .field label{font-size:12.5px;font-weight:700;color:var(--ink-2)}
+  .ct-form .field input,.ct-form .field textarea,.ct-form .field select{
+    width:100%;height:46px;border:1.5px solid var(--line);border-radius:10px;background:#fff;padding:0 14px;font-size:14px;color:var(--ink);font-weight:500;outline:none;transition:border-color .15s ease, box-shadow .15s ease
+  }
+  .ct-form .field textarea{height:auto;min-height:120px;padding:12px 14px;line-height:1.5;resize:vertical}
+  .ct-form .field input:focus,.ct-form .field textarea:focus,.ct-form .field select:focus{border-color:var(--brand);box-shadow:0 0 0 4px color-mix(in oklab, var(--brand) 14%, transparent)}
+  .ct-form .submit{margin-top:10px;width:100%;height:54px;border-radius:12px;border:none;background:var(--brand);color:#fff;font-weight:800;font-size:14.5px;letter-spacing:.01em;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 12px 28px -14px color-mix(in oklab, var(--brand) 70%, transparent);transition:background .15s ease, transform .08s ease}
+  .ct-form .submit:hover{background:var(--brand-deep)}
+  .ct-form .submit:active{transform:translateY(1px)}
+
+  /* ===================== Footer ===================== */
+  footer.site{background:var(--ink);color:rgba(255,255,255,.72);padding:72px 0 28px}
+  footer.site .top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px}
+  @media (max-width:980px){ footer.site .top{grid-template-columns:1fr 1fr;gap:36px} }
+  @media (max-width:560px){ footer.site .top{grid-template-columns:1fr} }
+  footer.site h5{color:#fff;font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin:0 0 18px}
+  footer.site ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+  footer.site ul a{color:rgba(255,255,255,.65);text-decoration:none;font-size:14px;transition:color .15s ease}
+  footer.site ul a:hover{color:#fff}
+  footer.site .blurb{font-size:13.5px;line-height:1.55;margin:16px 0 22px;max-width:340px;color:rgba(255,255,255,.6)}
+  footer.site .brand-w{display:inline-flex;align-items:center;gap:14px;text-decoration:none;color:#fff}
+  footer.site .brand-w .brand-mark{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);box-shadow:none}
+  footer.site .brand-w .n1{color:#fff}
+  footer.site .brand-w .n1 b{color:#fff}
+  footer.site .brand-w .n2{color:rgba(255,255,255,.55)}
+  footer.site .bottom{margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;font-size:12.5px;color:rgba(255,255,255,.45)}
+  footer.site .social{display:flex;gap:6px}
+  footer.site .social a{width:34px;height:34px;border-radius:10px;background:rgba(255,255,255,.06);display:inline-flex;align-items:center;justify-content:center;color:rgba(255,255,255,.7)}
+  footer.site .social a:hover{background:rgba(255,255,255,.12);color:#fff}
+
+  /* ===================== Whatsapp float ===================== */
+  .wa-float{position:fixed;bottom:24px;left:24px;z-index:50;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 16px 30px -10px rgba(37,211,102,.45);text-decoration:none;transition:transform .18s ease}
+  .wa-float:hover{transform:scale(1.06)}
+  .wa-float::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(37,211,102,.35);animation:ping 1.8s ease-out infinite}
+  @keyframes ping{0%{transform:scale(.8);opacity:.8} 80%{transform:scale(1.4);opacity:0} 100%{opacity:0}}
+
+  /* ============== Print ============== */
+  @media print {
+    @page { size: A4 portrait; margin: 10mm; }
+    html, body { background:#fff !important; }
+    *, *::before, *::after {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+      animation: none !important;
+      transition: none !important;
+    }
+    .wa-float, .nav-sheet, .nav-toggle { display:none !important; }
+    .masthead { position:static !important; backdrop-filter:none !important; -webkit-backdrop-filter:none !important; }
+    .topband, .masthead { break-inside: avoid; }
+    .hero { break-after: page; padding:0 !important; }
+    .hero-inner { padding:40px 0 60px !important; gap:32px !important; }
+    .hero h1 { font-size:38px !important; }
+    .hero .lede { font-size:14px !important; }
+    .hero-trust { margin-top:22px !important; gap:18px !important; }
+    .hero-trust b { font-size:18px !important; }
+    .hero-mark-wrap { width:280px !important; }
+    .hero-floater { box-shadow:0 0 0 1px var(--line) !important; }
+    section.page { padding:40px 0 !important; break-before: page; break-inside: avoid; }
+    section.page:first-of-type { break-before: auto; }
+    .sec-title { font-size:30px !important; }
+    .sec-lede { font-size:14px !important; }
+    .sec-head-row { margin-bottom:28px !important; }
+    .about-grid { gap:36px !important; grid-template-columns:1fr 1fr !important; }
+    .about-card { padding:28px !important; min-height:0 !important; }
+    .about-card h3 { font-size:22px !important; }
+    .about-stats { margin-top:24px !important; }
+    .about-stats .v { font-size:26px !important; }
+    .op-grid { grid-template-columns:repeat(4, 1fr) !important; gap:10px !important; }
+    .op-card { padding:14px !important; gap:8px !important; box-shadow:none !important; }
+    .op-logo { height:48px !important; font-size:14px !important; }
+    .op-name { font-size:13px !important; }
+    .vt-grid { grid-template-columns:repeat(2, 1fr) !important; gap:12px !important; }
+    .vt-card { padding:20px !important; box-shadow:none !important; break-inside:avoid; }
+    .vt-card h3 { font-size:16px !important; }
+    .vt-card p { font-size:12.5px !important; }
+    .vt-card ul li { font-size:12px !important; }
+    .vt-card .ic { width:42px !important; height:42px !important; margin-bottom:10px !important; }
+    .cta-banner { margin-top:28px !important; padding:28px !important; break-before: page; }
+    .cta-banner h3 { font-size:22px !important; }
+    .ct-grid { grid-template-columns:1fr 1fr !important; gap:28px !important; }
+    .ct-form { padding:24px !important; box-shadow:none !important; }
+    .ct-form h3 { font-size:18px !important; }
+    .ct-row { padding:12px !important; }
+    .ct-row .val { font-size:13.5px !important; }
+    footer.site { padding:36px 0 18px !important; break-inside: avoid; }
+    footer.site .top { gap:24px !important; }
+    a { color:inherit !important; text-decoration:none !important; }
+    .container { padding:0 16px !important; max-width:100% !important; }
+  }
+
+  /* Mobile nav sheet */
+  .nav-sheet{position:fixed;inset:0;z-index:60;background:rgba(11,21,48,.5);backdrop-filter:blur(6px);display:none;align-items:flex-start;justify-content:flex-end;padding:18px}
+  .nav-sheet.open{display:flex}
+  .nav-sheet .panel{width:min(380px,100%);background:#fff;border-radius:18px;padding:22px;box-shadow:var(--shadow-lg)}
+  .nav-sheet .panel a{display:block;padding:14px 12px;border-radius:10px;font-size:15px;font-weight:600;color:var(--ink);text-decoration:none}
+  .nav-sheet .panel a:hover{background:var(--bg)}
+  .nav-sheet .panel .sep{height:1px;background:var(--line);margin:10px 0}
+  .nav-sheet .panel .ctas{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+  .nav-sheet .panel .ctas a{text-align:center;padding:14px;font-weight:700}
+</style>
+</head>
+<body>
+
+<!-- ====== Topband ====== -->
+<div class="topband">
+  <div class="container">
+    <div class="topband-info">
+      <span>
+        <i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg></i>
+        <b>Telefone:</b> (11) 3121-5050
+      </span>
+      <span>
+        <i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 7 8.5-7"/></svg></i>
+        <b>E-mail:</b> contato@corclubassessoria.com.br
+      </span>
+    </div>
+    <div class="topband-social">
+      <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l1-4h-4V7.5C13 6.6 13.4 6 14.7 6H17V2.2C16.5 2.1 15.3 2 14 2c-2.8 0-4.5 1.7-4.5 4.7V10H6v4h3.5v8H13z"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
+      <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8h4.56v14H.22V8zm7.42 0h4.37v1.92h.06c.61-1.16 2.1-2.38 4.32-2.38 4.62 0 5.47 3.04 5.47 7v7.46h-4.56v-6.62c0-1.58-.03-3.61-2.2-3.61-2.2 0-2.54 1.72-2.54 3.49V22H7.64V8z"/></svg></a>
+      <a href="#" aria-label="WhatsApp"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11 11 0 0 0 3 18l-1 4 4-1a11 11 0 0 0 14.5-17.5zM12 20.2a9 9 0 0 1-4.6-1.3l-.3-.2-2.6.7.7-2.6-.2-.3a9 9 0 1 1 7 3.7zm5-6.5c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.2s-.8.9-1 1.1c-.2.2-.4.2-.7 0a7.2 7.2 0 0 1-2.1-1.3 8 8 0 0 1-1.5-1.8c-.2-.3 0-.5.1-.7l.4-.5.2-.4c.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.4 3 3 0 0 0-1 2.3c0 1.3 1 2.6 1.1 2.8s2 3.1 4.8 4.3c.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- ====== Masthead ====== -->
+<header class="masthead">
+  <div class="container">
+    <a class="brand" href="#top" aria-label="CorClub Assessoria">
+      <span class="brand-mark" aria-hidden="true">
+        <!-- CC monogram -->
+        <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <path d="M40 14a18 18 0 1 0 0 36" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"/>
+          <path d="M24 14a18 18 0 1 1 0 36" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="brand-name">
+        <span class="n1">Cor<b>Club</b></span>
+        <span class="n2">Assessoria</span>
+      </span>
+    </a>
+
+    <nav class="nav">
+      <a href="#sobre" class="has-caret">Sobre</a>
+      <a href="#operadoras" class="has-caret">Operadoras</a>
+      <a href="#vantagens" class="has-caret">Vantagens</a>
+      <a href="#contato">Contato</a>
+    </nav>
+
+    <div class="masthead-cta">
+      <a class="btn-pill outline" href="Login 1.html"><span class="label-long">Área </span>corretor</a>
+      <a class="btn-pill solid" href="Login 1.html"><span class="label-long">Área </span>corretora</a>
+      <button class="nav-toggle" aria-label="Abrir menu" onclick="document.getElementById('navsheet').classList.add('open')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="nav-sheet" id="navsheet" onclick="if(event.target===this) this.classList.remove('open')">
+  <div class="panel">
+    <a href="#sobre" onclick="document.getElementById('navsheet').classList.remove('open')">Sobre</a>
+    <a href="#operadoras" onclick="document.getElementById('navsheet').classList.remove('open')">Operadoras</a>
+    <a href="#vantagens" onclick="document.getElementById('navsheet').classList.remove('open')">Vantagens</a>
+    <a href="#contato" onclick="document.getElementById('navsheet').classList.remove('open')">Contato</a>
+    <div class="sep"></div>
+    <div class="ctas">
+      <a class="btn-pill outline" href="Login 1.html">Área do corretor</a>
+      <a class="btn-pill solid" href="Login 1.html">Área da corretora</a>
+    </div>
+  </div>
+</div>
+
+<!-- ====== Hero ====== -->
+<section class="hero" id="top">
+  <div class="hero-dots" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <span class="hero-eyebrow"><span class="dot"></span> Assessoria de planos de saúde · desde 2014</span>
+        <h1>Mais carteira.<br/>Mais comissão.<br/><em>Menos burocracia.</em></h1>
+        <p class="lede">Plataforma completa para corretores e corretoras de planos de saúde — cotação multi-operadora, propostas em poucos cliques e comissões acompanhadas em tempo real.</p>
+        <div class="hero-ctas">
+          <a class="btn-light" href="Login 1.html">
+            Acessar o painel
+            <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+          <a class="btn-ghost-l" href="#sobre">Conheça a CorClub</a>
+        </div>
+        <div class="hero-trust">
+          <div><b>+2.400</b>Corretores ativos</div>
+          <div><b>+38 mil</b>Vidas administradas</div>
+          <div><b>12</b>Operadoras parceiras</div>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-mark-wrap">
+          <div class="hero-mark-ring"></div>
+          <div class="hero-mark-ring r2"></div>
+          <div class="hero-mark-ring r3"></div>
+          <div class="hero-mark-cc">
+            <svg viewBox="0 0 220 220">
+              <path d="M150 38a72 72 0 1 0 0 144" stroke="currentColor" stroke-width="18" stroke-linecap="round" fill="none"/>
+              <path d="M90 38a72 72 0 1 1 0 144" stroke="currentColor" stroke-width="18" stroke-linecap="round" fill="none"/>
+            </svg>
+          </div>
+          <div class="hero-floater f1">
+            <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg></span>
+            <span>
+              <span class="lbl">Comissões</span>
+              <span>R$ 184.320 no mês</span>
+            </span>
+          </div>
+          <div class="hero-floater f2">
+            <span class="ic" style="background:#E4F5EE;color:#2BA37B"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>
+            <span>
+              <span class="lbl">Proposta aprovada</span>
+              <span>Bradesco Saúde · Família</span>
+            </span>
+          </div>
+          <div class="hero-floater f3">
+            <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 11h-6"/><path d="M19 8v6"/></svg></span>
+            <span>
+              <span class="lbl">Novo cliente</span>
+              <span>+12 nesta semana</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Sobre ====== -->
+<section class="page" id="sobre">
+  <div class="container about-grid">
+    <div>
+      <div class="sec-eyebrow">Sobre nós</div>
+      <h2 class="sec-title">Há mais de uma década ao lado de quem vende saúde.</h2>
+      <p class="sec-lede">A CorClub Assessoria nasceu para simplificar a rotina do corretor de planos de saúde. Conectamos parceiros às maiores operadoras do país, oferecemos suporte técnico e comercial e cuidamos da burocracia — para que você foque no que faz de melhor: vender e cuidar de pessoas.</p>
+
+      <div class="about-stats">
+        <div class="s"><div class="v">10+</div><div class="l">Anos de mercado</div></div>
+        <div class="s"><div class="v">12</div><div class="l">Operadoras parceiras</div></div>
+        <div class="s"><div class="v">38k</div><div class="l">Vidas ativas</div></div>
+      </div>
+
+      <div class="about-pillars">
+        <div class="pillar">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.6 3.4 8 8 9 4.6-1 8-4.4 8-9V6l-8-3z"/></svg></span>
+          <div>
+            <h4>Suporte humano e técnico</h4>
+            <p>Time dedicado para tirar dúvidas sobre coberturas, carências, reajustes e fluxos de proposta.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12c-1 1-3 2-9 2s-8-1-9-2"/><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
+          <div>
+            <h4>Painel exclusivo do corretor</h4>
+            <p>Acompanhe propostas, comissões e carteira de clientes em uma única tela, com dados em tempo real.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <div>
+            <h4>Comissões em dia</h4>
+            <p>Repasses pontuais e extratos detalhados — você sabe exatamente quanto, quando e por qual proposta.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="about-card">
+      <div class="about-card-top">
+        <span class="badge-w">Nosso compromisso</span>
+        <span class="seal">
+          <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <path d="M40 14a18 18 0 1 0 0 36" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+            <path d="M24 14a18 18 0 1 1 0 36" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+        </span>
+      </div>
+      <h3>O corretor no centro de tudo o que fazemos.</h3>
+      <p class="quote">"Cada decisão da CorClub passa por uma pergunta simples: isso facilita a vida do corretor parceiro? Se não facilita, voltamos para a prancheta."</p>
+      <div class="signature">
+        <span class="av">RM</span>
+        <div>
+          <div class="n">Ricardo Mendes</div>
+          <div class="r">Diretor · CorClub Assessoria</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ====== Operadoras ====== -->
+<section class="page" id="operadoras">
+  <div class="container">
+    <div class="sec-head-row">
+      <div>
+        <div class="sec-eyebrow">Operadoras parceiras</div>
+        <h2 class="sec-title">Acesso direto às maiores do mercado.</h2>
+      </div>
+      <p class="sec-lede" style="margin:0;max-width:480px">Trabalhamos com operadoras consolidadas em todo o território nacional, com tabelas competitivas e fluxos de proposta integrados ao painel.</p>
+    </div>
+
+    <div class="op-grid">
+      <article class="op-card">
+        <div class="op-logo">Bradesco Saúde</div>
+        <div class="op-name">Bradesco Saúde</div>
+        <div class="op-meta"><span class="t">PME</span><span class="t">Adesão</span><span class="t">Família</span></div>
+      </article>
+      <article class="op-card">
+        <div class="op-logo">SulAmérica</div>
+        <div class="op-name">SulAmérica Saúde</div>
+        <div class="op-meta"><span class="t">PME</span><span class="t">Empresarial</span></div>
+      </article>
+      <article class="op-card">
+        <div class="op-logo">Amil</div>
+        <div class="op-name">Amil</div>
+        <div class="op-meta"><span class="t">PME</span><span class="t">Adesão</span></div>
+      </article>
+      <article class="op-card">
+        <div class="op-logo">NotreDame</div>
+        <div class="op-name">NotreDame Intermédica</div>
+        <div class="op-meta"><span class="t">PME</span><span class="t">Família</span></div>
+      </article>
+      <article class="op-card">
+        <div class="op-logo">Hapvida</div>
+        <div class="op-name">Hapvida</div>
+        <div class="op-meta"><span class="t">PME</span><span class="t">Família</span></div>
+      </article>
+      <article class="op-card">
+        <div class="op-logo">Porto Seguro</div>
+        <div class="op-name">Porto Saúde</div>
+        <div class="op-meta"><span class="t">PME</span><span class="t">Adesão</span></div>
+      </article>
+      <article class="op-card">
+        <div class="op-logo">Unimed</div>
+        <div class="op-name">Unimed</div>
+        <div class="op-meta"><span class="t">Regional</span><span class="t">Nacional</span></div>
+      </article>
+      <article class="op-card">
+        <div class="op-logo">Omint</div>
+        <div class="op-name">Omint Saúde</div>
+        <div class="op-meta"><span class="t">Premium</span><span class="t">Empresarial</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Vantagens ====== -->
+<section class="page" id="vantagens">
+  <div class="container">
+    <div class="sec-head-row">
+      <div>
+        <div class="sec-eyebrow">Vantagens CorClub</div>
+        <h2 class="sec-title">Tudo o que você precisa para vender mais e melhor.</h2>
+      </div>
+      <p class="sec-lede" style="margin:0;max-width:480px">Combinamos tecnologia, suporte e processos para que cada minuto seu seja gasto onde realmente importa: com o cliente.</p>
+    </div>
+
+    <div class="vt-grid">
+      <article class="vt-card">
+        <span class="num">01</span>
+        <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 13.6 8 19 9.5 13.6 11 12 16.5 10.4 11 5 9.5 10.4 8z"/><path d="M19 16v4"/><path d="M17 18h4"/></svg></span>
+        <h3>Cotação multi-operadora</h3>
+        <p>Compare planos de 12 operadoras em uma única tela. Filtre por faixa, região, coberturas e exporte em PDF.</p>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Tabelas atualizadas semanalmente</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Cotação em 4 etapas guiadas</li>
+        </ul>
+      </article>
+
+      <article class="vt-card alt">
+        <span class="num">02</span>
+        <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 10h18"/><path d="M8 4v6"/></svg></span>
+        <h3>Painel completo do corretor</h3>
+        <p>Dashboard com pipeline visual em kanban ou tabela, carteira de clientes, propostas e extratos de comissão.</p>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Pipeline kanban + tabela</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Carteira com 360° do cliente</li>
+        </ul>
+      </article>
+
+      <article class="vt-card">
+        <span class="num">03</span>
+        <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+        <h3>Comissões em dia</h3>
+        <p>Repasses pontuais, extratos detalhados por proposta e acompanhamento de cada parcela em tempo real.</p>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Extrato por proposta</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Repasse via PIX</li>
+        </ul>
+      </article>
+
+      <article class="vt-card alt">
+        <span class="num">04</span>
+        <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+        <h3>Suporte humano</h3>
+        <p>Atendimento por WhatsApp, telefone e e-mail com gerente de conta dedicado para o seu CNPJ.</p>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Gerente dedicado</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Resposta em até 1h útil</li>
+        </ul>
+      </article>
+
+      <article class="vt-card">
+        <span class="num">05</span>
+        <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.6 3.4 8 8 9 4.6-1 8-4.4 8-9V6l-8-3z"/><path d="m9 12 2 2 4-4"/></svg></span>
+        <h3>Conformidade LGPD</h3>
+        <p>Dados dos seus clientes armazenados com criptografia, controle de acesso e trilhas de auditoria.</p>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Criptografia end-to-end</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Auditoria de acessos</li>
+        </ul>
+      </article>
+
+      <article class="vt-card alt">
+        <span class="num">06</span>
+        <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg></span>
+        <h3>Insights de mercado</h3>
+        <p>Relatórios mensais com ranking de operadoras, ticket médio por região e oportunidades de upsell.</p>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Ranking de operadoras</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg>Mapa de oportunidades</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="cta-banner">
+      <div>
+        <h3>Pronto para acessar seu painel?</h3>
+        <p>Se você já é parceiro CorClub, entre com seu e-mail e senha. Se ainda não é, fale com nosso time — abrimos contas em menos de 24h.</p>
+      </div>
+      <div class="actions">
+        <a class="btn-w" href="Login 1.html">Acessar painel
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+        </a>
+        <a class="btn-o" href="#contato">Quero ser parceiro</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Contato ====== -->
+<section class="page" id="contato">
+  <div class="container ct-grid">
+    <div>
+      <div class="sec-eyebrow">Fale com a CorClub</div>
+      <h2 class="sec-title">Vamos conversar sobre a sua carteira.</h2>
+      <p class="sec-lede">Preencha o formulário ou entre em contato pelos canais ao lado. Respondemos em até 1 hora útil.</p>
+
+      <div class="ct-info-list">
+        <div class="ct-row">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg></span>
+          <div>
+            <div class="lbl">Telefone</div>
+            <div class="val">(11) 3121-5050</div>
+            <div class="sub">Seg a sex · 8h às 18h</div>
+          </div>
+        </div>
+        <div class="ct-row">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 7 8.5-7"/></svg></span>
+          <div>
+            <div class="lbl">E-mail</div>
+            <div class="val">contato@corclubassessoria.com.br</div>
+            <div class="sub">Resposta em até 1h útil</div>
+          </div>
+        </div>
+        <div class="ct-row">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div>
+            <div class="lbl">Endereço</div>
+            <div class="val">Av. Paulista, 1000 · 12º andar</div>
+            <div class="sub">Bela Vista · São Paulo · SP</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form class="ct-form" onsubmit="event.preventDefault(); this.querySelector('.submit').innerHTML='✓ Mensagem enviada'; this.querySelector('.submit').style.background='var(--ok)';">
+      <h3>Quero ser parceiro CorClub</h3>
+      <p class="ct-sub">Conte um pouco sobre você. Um gerente entrará em contato em breve.</p>
+      <div class="row2">
+        <div class="field"><label for="nome">Nome completo</label><input id="nome" type="text" placeholder="Como podemos te chamar?" required/></div>
+        <div class="field"><label for="cpf">CPF / CNPJ</label><input id="cpf" type="text" placeholder="000.000.000-00"/></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="email">E-mail</label><input id="email" type="email" placeholder="seu@e-mail.com.br" required/></div>
+        <div class="field"><label for="tel">Telefone / WhatsApp</label><input id="tel" type="tel" placeholder="(11) 99999-9999"/></div>
+      </div>
+      <div class="field">
+        <label for="perfil">Você é</label>
+        <select id="perfil">
+          <option>Corretor(a) autônomo(a)</option>
+          <option>Corretora com equipe</option>
+          <option>Quero abrir uma corretora</option>
+          <option>Outro</option>
+        </select>
+      </div>
+      <div class="field"><label for="msg">Mensagem</label><textarea id="msg" placeholder="Conte-nos sobre sua operação atual…"></textarea></div>
+      <button type="submit" class="submit">
+        Enviar mensagem
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- ====== Footer ====== -->
+<footer class="site">
+  <div class="container">
+    <div class="top">
+      <div>
+        <a class="brand-w" href="#top">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+              <path d="M40 14a18 18 0 1 0 0 36" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"/>
+              <path d="M24 14a18 18 0 1 1 0 36" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="brand-name">
+            <span class="n1">Cor<b>Club</b></span>
+            <span class="n2">Assessoria</span>
+          </span>
+        </a>
+        <p class="blurb">Assessoria de planos de saúde para corretores parceiros. Comissões em dia, propostas em poucos cliques e suporte humano de verdade.</p>
+        <div class="social" aria-label="Redes sociais">
+          <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l1-4h-4V7.5C13 6.6 13.4 6 14.7 6H17V2.2C16.5 2.1 15.3 2 14 2c-2.8 0-4.5 1.7-4.5 4.7V10H6v4h3.5v8H13z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8h4.56v14H.22V8zm7.42 0h4.37v1.92h.06c.61-1.16 2.1-2.38 4.32-2.38 4.62 0 5.47 3.04 5.47 7v7.46h-4.56v-6.62c0-1.58-.03-3.61-2.2-3.61-2.2 0-2.54 1.72-2.54 3.49V22H7.64V8z"/></svg></a>
+          <a href="#" aria-label="WhatsApp"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11 11 0 0 0 3 18l-1 4 4-1a11 11 0 0 0 14.5-17.5zM12 20.2a9 9 0 0 1-4.6-1.3l-.3-.2-2.6.7.7-2.6-.2-.3a9 9 0 1 1 7 3.7zm5-6.5c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.2s-.8.9-1 1.1c-.2.2-.4.2-.7 0a7.2 7.2 0 0 1-2.1-1.3 8 8 0 0 1-1.5-1.8c-.2-.3 0-.5.1-.7l.4-.5.2-.4c.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.4 3 3 0 0 0-1 2.3c0 1.3 1 2.6 1.1 2.8s2 3.1 4.8 4.3c.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h5>Plataforma</h5>
+        <ul>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#operadoras">Operadoras</a></li>
+          <li><a href="#vantagens">Vantagens</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Acesso</h5>
+        <ul>
+          <li><a href="Login 1.html">Área do corretor</a></li>
+          <li><a href="Login 1.html">Área da corretora</a></li>
+          <li><a href="Painel do Corretor.html">Painel do corretor</a></li>
+          <li><a href="Painel Admin.html">Painel administrativo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contato</h5>
+        <ul>
+          <li><a href="tel:+551131215050">(11) 3121-5050</a></li>
+          <li><a href="mailto:contato@corclubassessoria.com.br">contato@corclubassessoria.com.br</a></li>
+          <li>Av. Paulista, 1000 · 12º</li>
+          <li>São Paulo · SP</li>
+        </ul>
+      </div>
+    </div>
+    <div class="bottom">
+      <span>© 2026 CorClub Assessoria · CNPJ 00.000.000/0001-00 · Todos os direitos reservados</span>
+      <span>Política de privacidade · Termos de uso</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/551131215050" aria-label="Falar pelo WhatsApp" target="_blank" rel="noopener">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11 11 0 0 0 3 18l-1 4 4-1a11 11 0 0 0 14.5-17.5zM12 20.2a9 9 0 0 1-4.6-1.3l-.3-.2-2.6.7.7-2.6-.2-.3a9 9 0 1 1 7 3.7zm5-6.5c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.2s-.8.9-1 1.1c-.2.2-.4.2-.7 0a7.2 7.2 0 0 1-2.1-1.3 8 8 0 0 1-1.5-1.8c-.2-.3 0-.5.1-.7l.4-.5.2-.4c.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.4 3 3 0 0 0-1 2.3c0 1.3 1 2.6 1.1 2.8s2 3.1 4.8 4.3c.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg>
+</a>
+
+<script>
+  // Auto-print once fonts are ready
+  (async () => {
+    try { if (document.fonts && document.fonts.ready) { await document.fonts.ready; } } catch(e){}
+    await new Promise(r => setTimeout(r, 500));
+    window.print();
+  })();
+</script>
+<script>
+  // Smooth scroll for anchor nav
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (id.length > 1) {
+        const el = document.querySelector(id);
+        if (el) { e.preventDefault(); window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' }); }
+      }
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>CorClub — Plataforma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
+<style>
+  body{background:var(--bg)}
+  .wrap{max-width:1280px;margin:0 auto;padding:56px 32px 80px}
+  .hero{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:40px;border-bottom:1px solid var(--line);padding-bottom:28px}
+  .hero h1{margin:0;font-size:44px;letter-spacing:-.025em;font-weight:800;line-height:1.05;color:var(--ink)}
+  .hero p.sub{margin:10px 0 0;color:var(--ink-2);font-size:16px;max-width:640px;line-height:1.5}
+  .tag{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);font-weight:700;margin-bottom:14px}
+  .tag span{width:6px;height:6px;border-radius:50%;background:var(--brand)}
+  section + section{margin-top:48px}
+  .sec-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:18px;gap:18px}
+  .sec-head h2{margin:0;font-size:20px;font-weight:800;letter-spacing:-.015em;color:var(--ink)}
+  .sec-head .lab{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--brand);font-weight:800}
+  .sec-head .meta{font-size:13px;color:var(--ink-3);font-weight:500}
+
+  .grid{display:grid;gap:22px}
+  .g-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .g-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  @media (max-width: 1000px){ .g-3,.g-2{grid-template-columns:1fr} }
+
+  .pcard{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s ease, box-shadow .2s ease}
+  .pcard:hover{transform:translateY(-3px);box-shadow:0 20px 50px -20px rgba(14,47,135,.18)}
+  .frame{position:relative;aspect-ratio:16/10;overflow:hidden;border-bottom:1px solid var(--line);background:var(--bg)}
+  .frame iframe{position:absolute;top:0;left:0;width:200%;height:200%;border:0;transform:scale(.5);transform-origin:top left;pointer-events:none}
+  .frame.tall{aspect-ratio:16/11}
+  .meta{padding:22px 22px 24px;display:flex;flex-direction:column;gap:14px;flex:1}
+  .num{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  .name{font-size:22px;font-weight:800;letter-spacing:-.015em;margin:0;color:var(--ink)}
+  .desc{margin:0;color:var(--ink-2);font-size:14px;line-height:1.55}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{font-size:11px;letter-spacing:.04em;padding:4px 10px;border-radius:999px;background:var(--bg-2);color:var(--ink-2);font-weight:700}
+  .row{display:flex;gap:8px;margin-top:auto}
+  .btn-link{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;height:42px;border-radius:10px;font-size:13.5px;font-weight:700;text-decoration:none;border:1px solid var(--line);background:#fff;color:var(--ink)}
+  .btn-link.primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .btn-link.primary.brand{background:var(--brand);border-color:var(--brand)}
+  .btn-link:hover{transform:translateY(-1px)}
+
+  /* dark variant card frame for admin */
+  .frame.dark{background:var(--ink)}
+
+  footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:var(--muted);font-size:12.5px}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <div>
+        <div class="tag"><span></span> CorClub Vantagens · Sprint de UI</div>
+        <h1>Plataforma CorClub</h1>
+        <p class="sub">Assessoria de planos de saúde para corretores parceiros e administradores. Três direções para a tela de login + dois painéis completos, todos compartilhando o mesmo sistema visual (Login&nbsp;1 como fonte da verdade).</p>
+      </div>
+      <div class="tech" style="font-size:11px;color:var(--muted)">v. 2026.05 · 5 entregas</div>
+    </div>
+
+    <!-- ===================== Painéis ===================== -->
+    <section>
+      <div class="sec-head">
+        <div>
+          <div class="lab">App</div>
+          <h2>Painéis da plataforma</h2>
+        </div>
+        <span class="meta">Protótipo clicável · navegação real · dados mockados (PT-BR)</span>
+      </div>
+
+      <div class="grid g-2">
+        <article class="pcard">
+          <div class="frame tall"><iframe src="Painel do Corretor.html" loading="lazy" title="Painel do Corretor"></iframe></div>
+          <div class="meta">
+            <div class="num">App · Corretor</div>
+            <h3 class="name">Painel do Corretor</h3>
+            <p class="desc">Dashboard, carteira de clientes, nova proposta em 4 etapas, pipeline de propostas (tabela e kanban), extratos de comissão, catálogo de planos e perfil. Sidebar clara e acolhedora — vendas em foco.</p>
+            <div class="chips">
+              <span class="chip">7 telas</span>
+              <span class="chip">20 clientes mock</span>
+              <span class="chip">Kanban + tabela</span>
+              <span class="chip">Cotação multi-etapa</span>
+              <span class="chip">Sidebar clara</span>
+            </div>
+            <div class="row">
+              <a class="btn-link primary brand" href="Painel do Corretor.html">Abrir painel do corretor →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="pcard">
+          <div class="frame tall dark"><iframe src="Painel Admin.html" loading="lazy" title="Painel Admin"></iframe></div>
+          <div class="meta">
+            <div class="num">App · Admin</div>
+            <h3 class="name">Painel Admin</h3>
+            <p class="desc">Dashboard executivo (GMV, conversão, mix por operadora), gestão de corretores e clientes, fila de aprovação de propostas, catálogo de operadoras e planos, comissões/repasses e relatórios. Sidebar dark — operacional e sóbria.</p>
+            <div class="chips">
+              <span class="chip">7 telas</span>
+              <span class="chip">18 corretores</span>
+              <span class="chip">8 operadoras</span>
+              <span class="chip">GMV + funil</span>
+              <span class="chip">Sidebar dark</span>
+            </div>
+            <div class="row">
+              <a class="btn-link primary" href="Painel Admin.html">Abrir painel admin →</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== Login ===================== -->
+    <section>
+      <div class="sec-head">
+        <div>
+          <div class="lab">Auth</div>
+          <h2>Telas de login</h2>
+        </div>
+        <span class="meta">3 direções visualmente distintas · tokens alinhados</span>
+      </div>
+
+      <div class="grid g-3">
+        <article class="pcard">
+          <div class="frame"><iframe src="Login 1.html" loading="lazy" title="Login 1"></iframe></div>
+          <div class="meta">
+            <div class="num">Opção 01 · base</div>
+            <h3 class="name">Split corporativo</h3>
+            <p class="desc">Painel azul à esquerda com benefícios + formulário respirado à direita. Solução clássica SaaS — fonte da verdade do sistema visual.</p>
+            <div class="chips"><span class="chip">Split layout</span><span class="chip">3 layouts via tweaks</span><span class="chip">Brand-forward</span></div>
+            <div class="row"><a class="btn-link primary" href="Login 1.html">Abrir tela cheia →</a></div>
+          </div>
+        </article>
+
+        <article class="pcard">
+          <div class="frame"><iframe src="Login 2.html" loading="lazy" title="Login 2"></iframe></div>
+          <div class="meta">
+            <div class="num">Opção 02</div>
+            <h3 class="name">Brand saturado</h3>
+            <p class="desc">Formulário à esquerda + painel azul à direita carregado de stats, depoimento e features. Peso maior na marca e no argumento de venda.</p>
+            <div class="chips"><span class="chip">Stat cards</span><span class="chip">Testimonial</span><span class="chip">Marketing-rich</span></div>
+            <div class="row"><a class="btn-link primary" href="Login 2.html">Abrir tela cheia →</a></div>
+          </div>
+        </article>
+
+        <article class="pcard">
+          <div class="frame dark"><iframe src="Login 3.html" loading="lazy" title="Login 3"></iframe></div>
+          <div class="meta">
+            <div class="num">Opção 03</div>
+            <h3 class="name">Imersivo · Glass</h3>
+            <p class="desc">Fundo azul em tela cheia com mesh animado e mark gigante em outline. Card de vidro com tilt 3D — premium, tecnológico.</p>
+            <div class="chips"><span class="chip">Full-bleed brand</span><span class="chip">Glass card</span><span class="chip">Passkey</span></div>
+            <div class="row"><a class="btn-link primary" href="Login 3.html">Abrir tela cheia →</a></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      <span>© 2026 CorClub Vantagens · plataforma completa</span>
+      <span class="tech">Clique em cada card para abrir em tela cheia</span>
+    </footer>
+  </div>
+</body>
+</html>
