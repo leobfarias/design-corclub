@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="css/app.css">
 <style>
   body{background:#fff;color:var(--ink)}
   img,svg{display:block}
@@ -236,6 +236,61 @@
   .wa-float::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(37,211,102,.35);animation:ping 1.8s ease-out infinite}
   @keyframes ping{0%{transform:scale(.8);opacity:.8} 80%{transform:scale(1.4);opacity:0} 100%{opacity:0}}
 
+  /* ============== Print ============== */
+  @media print {
+    @page { size: A4 portrait; margin: 10mm; }
+    html, body { background:#fff !important; }
+    *, *::before, *::after {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+      animation: none !important;
+      transition: none !important;
+    }
+    .wa-float, .nav-sheet, .nav-toggle { display:none !important; }
+    .masthead { position:static !important; backdrop-filter:none !important; -webkit-backdrop-filter:none !important; }
+    .topband, .masthead { break-inside: avoid; }
+    .hero { break-after: page; padding:0 !important; }
+    .hero-inner { padding:40px 0 60px !important; gap:32px !important; }
+    .hero h1 { font-size:38px !important; }
+    .hero .lede { font-size:14px !important; }
+    .hero-trust { margin-top:22px !important; gap:18px !important; }
+    .hero-trust b { font-size:18px !important; }
+    .hero-mark-wrap { width:280px !important; }
+    .hero-floater { box-shadow:0 0 0 1px var(--line) !important; }
+    section.page { padding:40px 0 !important; break-before: page; break-inside: avoid; }
+    section.page:first-of-type { break-before: auto; }
+    .sec-title { font-size:30px !important; }
+    .sec-lede { font-size:14px !important; }
+    .sec-head-row { margin-bottom:28px !important; }
+    .about-grid { gap:36px !important; grid-template-columns:1fr 1fr !important; }
+    .about-card { padding:28px !important; min-height:0 !important; }
+    .about-card h3 { font-size:22px !important; }
+    .about-stats { margin-top:24px !important; }
+    .about-stats .v { font-size:26px !important; }
+    .op-grid { grid-template-columns:repeat(4, 1fr) !important; gap:10px !important; }
+    .op-card { padding:14px !important; gap:8px !important; box-shadow:none !important; }
+    .op-logo { height:48px !important; font-size:14px !important; }
+    .op-name { font-size:13px !important; }
+    .vt-grid { grid-template-columns:repeat(2, 1fr) !important; gap:12px !important; }
+    .vt-card { padding:20px !important; box-shadow:none !important; break-inside:avoid; }
+    .vt-card h3 { font-size:16px !important; }
+    .vt-card p { font-size:12.5px !important; }
+    .vt-card ul li { font-size:12px !important; }
+    .vt-card .ic { width:42px !important; height:42px !important; margin-bottom:10px !important; }
+    .cta-banner { margin-top:28px !important; padding:28px !important; break-before: page; }
+    .cta-banner h3 { font-size:22px !important; }
+    .ct-grid { grid-template-columns:1fr 1fr !important; gap:28px !important; }
+    .ct-form { padding:24px !important; box-shadow:none !important; }
+    .ct-form h3 { font-size:18px !important; }
+    .ct-row { padding:12px !important; }
+    .ct-row .val { font-size:13.5px !important; }
+    footer.site { padding:36px 0 18px !important; break-inside: avoid; }
+    footer.site .top { gap:24px !important; }
+    a { color:inherit !important; text-decoration:none !important; }
+    .container { padding:0 16px !important; max-width:100% !important; }
+  }
+
   /* Mobile nav sheet */
   .nav-sheet{position:fixed;inset:0;z-index:60;background:rgba(11,21,48,.5);backdrop-filter:blur(6px);display:none;align-items:flex-start;justify-content:flex-end;padding:18px}
   .nav-sheet.open{display:flex}
@@ -296,8 +351,8 @@
     </nav>
 
     <div class="masthead-cta">
-      <a class="btn-pill outline" href="Login 1.html"><span class="label-long">Área </span>corretor</a>
-      <a class="btn-pill solid" href="Login 1.html"><span class="label-long">Área </span>corretora</a>
+      <a class="btn-pill outline" href="login-1.html"><span class="label-long">Área </span>corretor</a>
+      <a class="btn-pill solid" href="login-1.html"><span class="label-long">Área </span>corretora</a>
       <button class="nav-toggle" aria-label="Abrir menu" onclick="document.getElementById('navsheet').classList.add('open')">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       </button>
@@ -313,8 +368,8 @@
     <a href="#contato" onclick="document.getElementById('navsheet').classList.remove('open')">Contato</a>
     <div class="sep"></div>
     <div class="ctas">
-      <a class="btn-pill outline" href="Login 1.html">Área do corretor</a>
-      <a class="btn-pill solid" href="Login 1.html">Área da corretora</a>
+      <a class="btn-pill outline" href="login-1.html">Área do corretor</a>
+      <a class="btn-pill solid" href="login-1.html">Área da corretora</a>
     </div>
   </div>
 </div>
@@ -329,7 +384,7 @@
         <h1>Mais carteira.<br/>Mais comissão.<br/><em>Menos burocracia.</em></h1>
         <p class="lede">Plataforma completa para corretores e corretoras de planos de saúde — cotação multi-operadora, propostas em poucos cliques e comissões acompanhadas em tempo real.</p>
         <div class="hero-ctas">
-          <a class="btn-light" href="Login 1.html">
+          <a class="btn-light" href="login-1.html">
             Acessar o painel
             <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
           </a>
@@ -583,7 +638,7 @@
         <p>Se você já é parceiro CorClub, entre com seu e-mail e senha. Se ainda não é, fale com nosso time — abrimos contas em menos de 24h.</p>
       </div>
       <div class="actions">
-        <a class="btn-w" href="Login 1.html">Acessar painel
+        <a class="btn-w" href="login-1.html">Acessar painel
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
         </a>
         <a class="btn-o" href="#contato">Quero ser parceiro</a>
@@ -694,10 +749,10 @@
       <div>
         <h5>Acesso</h5>
         <ul>
-          <li><a href="Login 1.html">Área do corretor</a></li>
-          <li><a href="Login 1.html">Área da corretora</a></li>
-          <li><a href="Painel do Corretor.html">Painel do corretor</a></li>
-          <li><a href="Painel Admin.html">Painel administrativo</a></li>
+          <li><a href="login-1.html">Área do corretor</a></li>
+          <li><a href="login-1.html">Área da corretora</a></li>
+          <li><a href="painel-corretor.html">Painel do corretor</a></li>
+          <li><a href="painel-admin.html">Painel administrativo</a></li>
         </ul>
       </div>
       <div>
@@ -721,6 +776,14 @@
   <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11 11 0 0 0 3 18l-1 4 4-1a11 11 0 0 0 14.5-17.5zM12 20.2a9 9 0 0 1-4.6-1.3l-.3-.2-2.6.7.7-2.6-.2-.3a9 9 0 1 1 7 3.7zm5-6.5c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.2s-.8.9-1 1.1c-.2.2-.4.2-.7 0a7.2 7.2 0 0 1-2.1-1.3 8 8 0 0 1-1.5-1.8c-.2-.3 0-.5.1-.7l.4-.5.2-.4c.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.4 3 3 0 0 0-1 2.3c0 1.3 1 2.6 1.1 2.8s2 3.1 4.8 4.3c.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg>
 </a>
 
+<script>
+  // Auto-print once fonts are ready
+  (async () => {
+    try { if (document.fonts && document.fonts.ready) { await document.fonts.ready; } } catch(e){}
+    await new Promise(r => setTimeout(r, 500));
+    window.print();
+  })();
+</script>
 <script>
   // Smooth scroll for anchor nav
   document.querySelectorAll('a[href^="#"]').forEach(a => {
